@@ -14,7 +14,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('openapi', app, document, {
+  SwaggerModule.setup('swagger/v3/openapi', app, document, {
     swaggerOptions: {
       persistAuthorization: true,
     },
