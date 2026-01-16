@@ -7,7 +7,7 @@ import {
   IsBoolean,
   IsEmail,
 } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Gender } from '@prisma/client';
 
 export class CreateStudentDto {
@@ -19,7 +19,7 @@ export class CreateStudentDto {
   @IsInt()
   age: number;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsDateString()
   @IsOptional()
   birthDate?: string;
@@ -44,33 +44,32 @@ export class CreateStudentDto {
   @IsInt()
   rollNo: number;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsString()
   @IsOptional()
   fatherName?: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsString()
   @IsOptional()
   motherName?: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsString()
   @IsOptional()
   phone?: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsEmail()
   @IsOptional()
   email?: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsString()
   @IsOptional()
   address?: string;
 
   @ApiProperty()
   @IsBoolean()
-  @IsOptional()
   isActive?: boolean;
 }
