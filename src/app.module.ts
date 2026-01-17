@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentsModule } from './students/students.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { SectionsModule } from './sections/sections.module';
 
 @Module({
-  imports: [StudentsModule, PrismaModule],
+  imports: [StudentsModule, PrismaModule, SectionsModule],
   controllers: [AppController],
   providers: [AppService],
 })

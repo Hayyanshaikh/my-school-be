@@ -48,6 +48,30 @@ export class StudentsService {
         errors.push('Section ID is required.');
       }
 
+      if (createStudentDto.sectionId) {
+        const checkSection = await this.prisma.section.findUnique({
+          where: {
+            id: createStudentDto.sectionId,
+          },
+        });
+
+        if (!checkSection) {
+          errors.push('Section ID must be string.');
+        }
+      }
+
+      if (createStudentDto.classId) {
+        const checkClass = await this.prisma.class.findUnique({
+          where: {
+            id: createStudentDto.classId,
+          },
+        });
+
+        if (!checkClass) {
+          errors.push('Class ID must be string.');
+        }
+      }
+
       if (errors.length > 0) {
         // Agar errors ho to throw kar do
         throw new BadRequestException({
