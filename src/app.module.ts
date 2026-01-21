@@ -4,10 +4,10 @@ import { AppService } from './app.service';
 import { StudentsModule } from './students/students.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { SectionsModule } from './sections/sections.module';
-import { GeminiModule } from './gemini/gemini.module';
+import { AcademixModule } from './academix/academix.module';
 
 @Module({
-  imports: [StudentsModule, PrismaModule, SectionsModule, GeminiModule],
+  imports: [StudentsModule, PrismaModule, SectionsModule, AcademixModule],
   controllers: [AppController],
   providers: [AppService],
 })
