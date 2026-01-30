@@ -18,6 +18,16 @@ enum Gender {
   OTHERS
 }
 
+model User {
+  id        String    @id @default(uuid())
+  email     String?   @unique
+  username  String    @unique
+  password  String
+  role      String?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
 model Student {
   id            String    @id @default(uuid())
   name          String    @unique
