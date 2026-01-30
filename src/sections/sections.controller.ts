@@ -24,7 +24,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   @ApiOperation({ summary: 'Create a new section' })
   @ApiResponse({ status: 201, description: 'Section created successfully.' })
@@ -33,7 +33,7 @@ export class SectionsController {
     return this.sectionsService.create(createSectionDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   @ApiOperation({ summary: 'Get all sections' })
   @ApiResponse({
