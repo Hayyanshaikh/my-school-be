@@ -8,7 +8,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors({ origin: 'http://localhost:3000' });
+  app.enableCors({ origin: '*' });
 
   // Global response for all success APIs
   app.useGlobalInterceptors(new ResponseInterceptor());
@@ -29,6 +29,6 @@ async function bootstrap() {
     },
   });
 
-  await app.listen(3001);
+  await app.listen(process.env.PORT || 3001);
 }
 bootstrap();
