@@ -5,7 +5,11 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
+    "seed": "npx prisma db seed",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -26,9 +30,12 @@
     "@nestjs/swagger": "^11.2.5",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
+    "bcrypt": "^6.0.0",
     "class-validator": "^0.14.3",
+    "cookie-parser": "^1.4.7",
     "dayjs": "^1.11.19",
     "dotenv": "^17.2.3",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.17.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
@@ -39,9 +46,12 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+    "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.19.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.19.7",
     "@types/pg": "^8.16.0",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
@@ -57,7 +67,8 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.7.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.20.0"
   },
   "jest": {

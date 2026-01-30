@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { SectionsService } from './sections.service';
 import { CreateSectionDto } from './dto/create-section.dto';
@@ -16,12 +17,14 @@ import {
   FindOneSectionResponseDto,
   ResponseSectionDto,
 } from './dto/response-section.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('sections')
 @Controller('sections')
 export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @ApiOperation({ summary: 'Create a new section' })
   @ApiResponse({ status: 201, description: 'Section created successfully.' })
@@ -30,6 +33,7 @@ export class SectionsController {
     return this.sectionsService.create(createSectionDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   @ApiOperation({ summary: 'Get all sections' })
   @ApiResponse({

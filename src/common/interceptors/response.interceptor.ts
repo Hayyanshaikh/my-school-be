@@ -10,19 +10,24 @@ import { map } from 'rxjs/operators';
 export class ResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler) {
     return next.handle().pipe(
-      map((data) => ({
-        status: true,
-        statusCode: context.switchToHttp().getResponse().statusCode,
-        data: data.data ?? data,
-        message: data.message || 'Request successful',
-        metadata: data?.meta
-          ? {
-              maxLimit: data.meta.maxLimit || Number(process.env.MAX_LIMIT),
-              total: data.meta.total || 0,
-              totalRecords: data.meta.totalRecords || 0,
-            }
-          : undefined,
-      })),
+      map((data) => {
+        const { data: innerData, message, meta, ...rest } = data ?? {};
+
+        return {
+          status: true,
+          statusCode: context.switchToHttp().getResponse().statusCode,
+          data: innerData ?? data,
+          message: message || 'Request successful',
+          metadata: meta
+            ? {
+                maxLimit: meta.maxLimit || Number(process.env.MAX_LIMIT),
+                total: meta.total || 0,
+                totalRecords: meta.totalRecords || 0,
+              }
+            : undefined,
+          ...rest,
+        };
+      }),
     );
   }
 }
