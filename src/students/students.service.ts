@@ -16,7 +16,6 @@ export class StudentsService {
     const errors: string[] = []; // validation / custom errors array
 
     try {
-      // Example manual validation before DB
       if (!createStudentDto.name) {
         errors.push('Name is required.');
       }
@@ -73,19 +72,20 @@ export class StudentsService {
       }
 
       if (errors.length > 0) {
-        // Agar errors ho to throw kar do
         throw new BadRequestException({
           message: 'Validation failed',
-          errors, // array of collected errors
+          errors,
         });
       }
 
-      // Prisma create call
       const student = await this.prisma.student.create({
         data: createStudentDto,
       });
 
-      return student;
+      return {
+        data: student,
+        message: 'Student created successfully',
+      };
     } catch (error) {
       if (error instanceof BadRequestException) {
         throw error;
